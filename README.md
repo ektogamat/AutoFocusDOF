@@ -4,8 +4,9 @@
     <a href="https://autofocusdof.vercel.app/" target="_blank"><img src="https://autofocusdof.vercel.app/autofocus.jpg" width="100%"/></a>
 </p>
 
-# Live Link
-Click here: <a href="https://autofocusdof.vercel.app" target="_blank">https://autofocusdof.vercel.app</a>
+Live link with the demo of the component <a href="https://autofocusdof.vercel.app" target="_blank">https://autofocusdof.vercel.app</a>
+
+Download link for the component: [Click here](https://gist.github.com/ektogamat/1b3a609051fe128762fd086d385ddf55)
 
 # Introduction
 This component was created to make your life easier when creating a scene using React Three Fiber and the post processing effect to obtain an auto focus. It depends on @react-three/postprocessing to work, in addition to <Bvh> to be able to scan objects on Canvas using a RayCaster to calculate the distance.
@@ -21,6 +22,58 @@ There are some options you can use:
 # HOW TO USE?
 ```
 import AutoFocusDOF from './AutoFocusDOF'
+```
+
+## You can also create a file to hold the component yourself. Just copy and paste these lines.
+```
+import { useRef } from 'react'
+import { useFrame, useThree } from '@react-three/fiber'
+import { DepthOfField } from '@react-three/postprocessing'
+import { Raycaster, Vector2, Vector3 } from 'three'
+
+export default function AutoFocusDOF(
+    { bokehScale = 10, 
+    focalLength = 0.001, 
+    focusSpeed = 0.05, 
+    mouseFocus = false, 
+    resolution = 512 
+    }) 
+{
+    const { camera, mouse, scene } = useThree()
+
+    const ref = useRef()
+    const raycaster = new Raycaster()
+    const finalVector = new Vector3()
+
+    raycaster.firstHitOnly = true
+
+
+    useFrame((state) => {
+        if (mouseFocus) {
+            raycaster.setFromCamera(mouse, camera)
+        } else {
+            raycaster.setFromCamera(new Vector2(0, 0), camera)
+        }
+
+        const intersects = raycaster.intersectObjects(scene.children)
+
+        if (intersects.length > 0) {
+            finalVector.lerp(intersects[0].point, focusSpeed)
+            ref.current.target = finalVector
+        }
+    });
+
+    return (
+        <DepthOfField
+            focalLength={focalLength}
+            bokehScale={bokehScale}
+            height={resolution}
+            ref={ref}
+        />
+    );
+
+};
+
 ```
 ## And add this component inside the EffectsComposer...
 ```
