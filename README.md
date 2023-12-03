@@ -1,5 +1,7 @@
-# AutoFocusDOF Component for React Three Fiber
+#⚠️ PLEASE ATTENTION:
+This repository is now part of the default React Three Fiber Post Processing library. You can find how to use it here: https://docs.pmnd.rs/react-postprocessing/effects/autofocus. This repo still works (Dec 2023) but I will not update it anymore with new features. You can still use it if you want, but I recommend that you use the official version now because it is easier to use and will always be updated. I appreciate your interest in this project.
 
+## AutoFocusDOF Component for React Three Fiber
 <p align="center">
     <a href="https://autofocusdof.vercel.app/" target="_blank"><img src="https://autofocusdof.vercel.app/autofocus.jpg" width="100%"/></a>
 </p>
