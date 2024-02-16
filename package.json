@@ -11,8 +11,8 @@
   ],
   "main": "src/index.js",
   "dependencies": {
-    "@react-three/drei": "9.58.4",
-    "@react-three/fiber": "8.12.0",
+    "@react-three/drei": "^9.97.6",
+    "@react-three/fiber": "^8.15.16",
     "@react-three/postprocessing": "2.7.1",
     "framer-motion": "10.11.2",
     "leva": "0.9.34",
@@ -21,7 +21,8 @@
     "react-device-detect": "2.2.3",
     "react-dom": "18.2.0",
     "react-scripts": "5.0.1",
-    "three": "0.150.0"
+    "three": "^0.161.0",
+    "vercel": "^33.5.1"
   },
   "devDependencies": {
     "typescript": "3.8.3"
@@ -30,7 +31,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "vercel --prod"
   },
   "browserslist": [
     ">0.2%",
